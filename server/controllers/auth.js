@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, address, password, role } = req.body;
     const existingUser = await AuthModel.findOne({ email });
 
     if (existingUser) {
@@ -27,6 +27,7 @@ exports.signup = async (req, res) => {
     const dbEntry = await AuthModel.create({
       name,
       email,
+      address,
       password:hashPassword,
       role,
     });
