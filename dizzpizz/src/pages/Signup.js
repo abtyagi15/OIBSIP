@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import {AiOutlineEye,AiOutlineEyeInvisible} from "react-icons/ai"
+import {AiOutlineEye,AiOutlineEyeInvisible} from "react-icons/ai";
+// import {useNavigate} from "react-router-dom";
 
 const Signup = () => {
   // const [role, setRole] = useState("User");
   const [passwords,setPasswords] = useState(["hidden","hidden"]);
+  const [responseMessage,setResponseMessage] = useState('');
   const [formData,setFormData] = useState({
     fullName: "",
     email:"",
@@ -22,11 +24,33 @@ const Signup = () => {
     });
     
   }
+  const responseMessageHandler = (message) =>{
+    setResponseMessage(message);
+  }
+  // const navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
     console.log("Form is successfully submitted.............");
-    console.log(formData);
+    const {confirmPassword,...updatedFormData} = formData;
+    setFormData(updatedFormData);
+
+    fetch("http://127.0.0.1:4500/abtyagi15/v1/signup",{
+      method: "POST",
+      headers: {
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((response)=> response.json())
+    .then((data)=>{
+      responseMessageHandler(data.message);
+    })
+    .catch((error)=>{
+      console.log("Error in sending message to backend"+error);
+    })
+
+    // navigate('/');
   }
 
   return (
@@ -64,7 +88,8 @@ const Signup = () => {
           </div>
           <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={changeHandler}/>
           <input type="email" name="email" placeholder="Email" value={formData.email} onChange={changeHandler}/>
-
+          {responseMessage !== "Entry created successfully" && <p className="text-black bg-white">{responseMessage}</p>}
+          
           {formData.role === "User" && (
             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={changeHandler}/>
           )}
