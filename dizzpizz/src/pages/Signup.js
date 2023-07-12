@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import {AiOutlineEye,AiOutlineEyeInvisible} from "react-icons/ai";
-// import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Signup = () => {
-  // const [role, setRole] = useState("User");
+  const navigate = useNavigate();
+
   const [passwords,setPasswords] = useState(["hidden","hidden"]);
   const [responseMessage,setResponseMessage] = useState('');
   const [formData,setFormData] = useState({
@@ -27,7 +28,6 @@ const Signup = () => {
   const responseMessageHandler = (message) =>{
     setResponseMessage(message);
   }
-  // const navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -45,12 +45,21 @@ const Signup = () => {
     .then((response)=> response.json())
     .then((data)=>{
       responseMessageHandler(data.message);
+      if(data.message==="Entry created successfully"){
+        const role = data.role;
+        if(role==="User"){
+          navigate("/user");
+        }
+        else if(role==="Admin"){
+          navigate("/admin");
+        }  
+      
+      }
     })
     .catch((error)=>{
       console.log("Error in sending message to backend"+error);
     })
 
-    // navigate('/');
   }
 
   return (
