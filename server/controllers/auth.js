@@ -34,7 +34,8 @@ exports.signup = async (req, res) => {
 
     return res.status(200).json({
         success:true,
-        message:"Entry created successfully"
+        message:"Entry created successfully",
+        role: role
     })
   } catch (error) {
     res.json({
