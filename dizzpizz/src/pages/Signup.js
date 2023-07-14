@@ -64,11 +64,11 @@ const Signup = () => {
 
   return (
     <div className="flex justify-center border">
-      <div>
+      <div className="bg-[#fac564]">
         <p>Welcome Back</p>
         <button>Sign in</button>
       </div>
-      <div>
+      <div className="bg-white">
         <p>Create Account</p>
         <form onSubmit={submitHandler}>
           <div className="flex">
@@ -95,16 +95,23 @@ const Signup = () => {
               Admin
             </p>
           </div>
-          <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={changeHandler}/>
-          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={changeHandler}/>
+          <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName}
+             onChange={changeHandler}
+             className="bg-[#edf5f3] border-none outline-none rounded-[10px] text-[14px] my-[5px] p-[15px] w-[370px]" />
+          <input type="email" name="email" placeholder="Email" value={formData.email} 
+            onChange={changeHandler}
+            className="bg-[#edf5f3] border-none outline-none rounded-[10px] text-[14px] my-[5px] p-[15px] w-[370px]" />
           {responseMessage !== "Entry created successfully" && <p className="text-black bg-white">{responseMessage}</p>}
           
           {formData.role === "User" && (
-            <input type="text" name="address" placeholder="Address" value={formData.address} onChange={changeHandler}/>
+            <input type="text" name="address" placeholder="Address" value={formData.address} 
+            onChange={changeHandler}
+            className="bg-[#edf5f3] border-none outline-none rounded-[10px] text-[14px] my-[5px] p-[15px] w-[370px]" />
           )}
           <div className="bg-white flex items-center">
             <input type={passwords[0] === "hidden" ? "password" : "text"} name="password" placeholder="Password" value={formData.Password}
-            onChange={changeHandler}  />
+            onChange={changeHandler}
+            className="bg-[#edf5f3] border-none outline-none rounded-[10px] text-[14px] my-[5px] p-[15px] w-[370px]"  />
             {
              (passwords[0]==="hidden") ? 
                 (<AiOutlineEye 
@@ -128,7 +135,8 @@ const Signup = () => {
           </div>
           <div className="bg-white flex items-center">
             <input type={passwords[1] === "hidden" ? "password" : "text"} name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword}
-              onChange={changeHandler} />
+              onChange={changeHandler}
+              className="bg-[#edf5f3] border-none outline-none rounded-[10px] text-[14px] my-[5px] p-[15px] w-[370px]" />
             {
              (passwords[1]==="hidden") ? 
                 (<AiOutlineEye 
