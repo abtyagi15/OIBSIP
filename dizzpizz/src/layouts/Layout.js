@@ -7,11 +7,9 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <div>
-        <div className="relative">
-          <div className="absolute z-[100]">{children}</div>
-          <Background className="absolute z-[-100]" />
-        </div>
+      <div className="background-container relative h-[700px] flex justify-center items-center">
+        <div className="z-[100] absolute w-[71%]">{children}</div>
+        <Background />
       </div>
       <Footer />
     </div>
