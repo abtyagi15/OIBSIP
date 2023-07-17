@@ -26,9 +26,11 @@ const Signup = () => {
         [name]: value,
       };
     });
+    console.log(formData.fullName);
   };
   const responseMessageHandler = (message) => {
     setResponseMessage(message);
+    console.log("This is message"+message);
   };
 
   const submitHandler = (event) => {
@@ -138,7 +140,7 @@ const Signup = () => {
                 "User already exist, try with different mail" &&
                 `${responseMessage}`}
             </p>
-            {formData.role === "User" && (
+            
               <input
                 type="text"
                 name="address"
@@ -148,7 +150,7 @@ const Signup = () => {
                 required
                 className="bg-[#edf5f3] border-none outline-none rounded-[10px] text-[14px] my-[5px] p-[15px] w-[65%]"
               />
-            )}
+            
             <div className=" flex items-center p-0 my-[5px] rounded-[10px] bg-[#edf5f3]  w-[65%]">
               <input
                 type={passwords[0] === "hidden" ? "password" : "text"}
@@ -226,9 +228,9 @@ const Signup = () => {
             Sign Up
           </button>
           <p className="text-black bg-white">
-            {responseMessage === "Unable to signup, try again later" && {
-              responseMessage,
-            }}
+            {responseMessage === "Unable to signup, try again later" && `${
+              responseMessage
+            }`}
           </p>
         </form>
       </div>
