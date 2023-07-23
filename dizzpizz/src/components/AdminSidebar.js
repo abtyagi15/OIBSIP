@@ -17,7 +17,7 @@ const AdminSidebar = () => {
             <p>Admin Name</p>
         </div>
         <div>
-            <Link to="userlist" className='flex items-center'>
+            <Link to="" className='flex items-center'>
                 <FiUsers/>
                 <p>Users List</p>
             </Link>
