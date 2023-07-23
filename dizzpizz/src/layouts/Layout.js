@@ -1,9 +1,8 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Background from "../components/Background";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import AdminHome from "../pages/AdminHome";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -15,13 +14,14 @@ const Layout = ({ children }) => {
         <>
           <Navbar />
           <div className="background-container relative h-[700px] flex justify-center items-center">
-            <div className="z-[100] absolute w-[71%]">{children}</div>
+            <div className="z-[100] absolute w-[71%]">
+              <Outlet/>
+            </div>
             <Background />
           </div>
           <Footer />
         </>
       }
-      {location.pathname === "/admin" && <AdminHome/>}
     </div>
   );
 };
